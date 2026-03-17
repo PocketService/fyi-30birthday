@@ -4,31 +4,39 @@ services:
     restart: unless-stopped
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
       POSTGRES_DB: geburtstag
     volumes:
       - pgdata:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
       timeout: 5s
       retries: 5
+    networks:
+      - internal
 
   app:
     build: .
     restart: unless-stopped
-    ports:
-      - "3000:3000"
+    expose:
+      - "3000"
     environment:
-      DATABASE_URL: postgresql://postgres:postgres@db:5432/geburtstag
+      DATABASE_URL: postgresql://postgres:${DB_PASSWORD:-postgres}@db:5432/geburtstag
       ADMIN_USER: ${ADMIN_USER:-admin}
-      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin123}
-      TOKEN_SECRET: ${TOKEN_SECRET:-a-very-secret-key-change-me-in-production-32chars!}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      TOKEN_SECRET: ${TOKEN_SECRET}
     depends_on:
       db:
         condition: service_healthy
+    networks:
+      - internal
+      - npm_network
 
 volumes:
   pgdata:
+
+networks:
+  internal:
+  npm_network:
+    external: true
