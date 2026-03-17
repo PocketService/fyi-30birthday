@@ -1,4 +1,4 @@
-FROM node:20-alpine AS base
+FROM node:20-alpine3.18 AS base
 
 # --- Dependencies ---
 FROM base AS deps
@@ -21,7 +21,7 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
-RUN apk add --no-cache su-exec openssl1.1-compat
+RUN apk add --no-cache su-exec
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
