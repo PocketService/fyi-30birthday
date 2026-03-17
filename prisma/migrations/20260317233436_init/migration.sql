@@ -11,9 +11,12 @@ CREATE TABLE "guests" (
     "email" TEXT,
     "token" TEXT NOT NULL,
     "sleepover" BOOLEAN NOT NULL DEFAULT false,
-    "sleepover_dates" TIMESTAMP(3)[],
+    "sleepover_from" TIMESTAMP(3),
+    "sleepover_to" TIMESTAMP(3),
     "food_preference" "FoodPreference",
     "allergies" TEXT,
+    "plus_one_count" INTEGER NOT NULL DEFAULT 0,
+    "plus_one_names" TEXT[],
     "profile_complete" BOOLEAN NOT NULL DEFAULT false,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
