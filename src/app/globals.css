@@ -3,25 +3,233 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #fdf8f0;
+  --foreground: #2d1b0e;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* ============================================
+   BRUTALIST GUEST THEME
+   ============================================ */
+
+.guest-bg {
+  background-color: #F5F0E6;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 59px,
+      rgba(3, 63, 99, 0.05) 59px,
+      rgba(3, 63, 99, 0.05) 60px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 59px,
+      rgba(3, 63, 99, 0.05) 59px,
+      rgba(3, 63, 99, 0.05) 60px
+    );
+}
+
+/* Brutal card */
+.brutal-card {
+  background: #FFFDF9;
+  border: 3px solid #033F63;
+  box-shadow: 6px 6px 0 #033F63;
+}
+.brutal-card:hover {
+  box-shadow: 8px 8px 0 #033F63;
+  transform: translate(-1px, -1px);
+}
+
+/* Colored shadow variants */
+.brutal-card-navy {
+  background: #FFFDF9;
+  border: 3px solid #033F63;
+  box-shadow: 6px 6px 0 #033F63;
+}
+.brutal-card-olive {
+  background: #FFFDF9;
+  border: 3px solid #033F63;
+  box-shadow: 6px 6px 0 #697A21;
+}
+.brutal-card-pink {
+  background: #FFFDF9;
+  border: 3px solid #033F63;
+  box-shadow: 6px 6px 0 #FF5D73;
+}
+.brutal-card-gold {
+  background: #FFFDF9;
+  border: 3px solid #033F63;
+  box-shadow: 6px 6px 0 #FFC914;
+}
+.brutal-card-wine {
+  background: #FFFDF9;
+  border: 3px solid #033F63;
+  box-shadow: 6px 6px 0 #450920;
+}
+
+/* Accent card */
+.brutal-card-accent {
+  background: #FF5D73;
+  border: 3px solid #033F63;
+  box-shadow: 6px 6px 0 #033F63;
+  color: #FFFDF9;
+}
+
+/* Badge */
+.brutal-badge {
+  display: inline-block;
+  border: 2px solid #033F63;
+  padding: 2px 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: #FFC914;
+  color: #033F63;
+  transform: rotate(-2deg);
+}
+
+/* Pill — unselected */
+.brutal-pill {
+  border: 3px solid #033F63;
+  background: #FFFDF9;
+  color: #033F63;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 #033F63;
+  text-align: center;
+}
+.brutal-pill:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 #033F63;
+}
+.brutal-pill:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #033F63;
+}
+
+/* Selected pill states */
+.brutal-pill-navy {
+  border: 3px solid #033F63;
+  background: #033F63;
+  color: #FFFDF9;
+  box-shadow: 3px 3px 0 #FFC914;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+}
+
+.brutal-pill-pink {
+  border: 3px solid #033F63;
+  background: #FF5D73;
+  color: #FFFDF9;
+  box-shadow: 3px 3px 0 #033F63;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+}
+
+.brutal-pill-olive {
+  border: 3px solid #033F63;
+  background: #697A21;
+  color: #FFFDF9;
+  box-shadow: 3px 3px 0 #033F63;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+}
+
+.brutal-pill-gold {
+  border: 3px solid #033F63;
+  background: #FFC914;
+  color: #033F63;
+  box-shadow: 3px 3px 0 #033F63;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+}
+
+.brutal-pill-wine {
+  border: 3px solid #033F63;
+  background: #450920;
+  color: #FFFDF9;
+  box-shadow: 3px 3px 0 #FF5D73;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* Submit button */
+.btn-brutal {
+  background: #FF5D73;
+  color: #FFFDF9;
+  border: 3px solid #033F63;
+  box-shadow: 5px 5px 0 #033F63;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+.btn-brutal:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 #033F63;
+}
+.btn-brutal:active {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 #033F63;
+}
+
+/* Input */
+.brutal-input {
+  border: 3px solid #033F63;
+  background: #FFFDF9;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: #033F63;
+  outline: none;
+}
+.brutal-input::placeholder {
+  color: #8A9BA0;
+}
+.brutal-input:focus {
+  box-shadow: 4px 4px 0 #FF5D73;
+}
+
+/* Checkbox */
+.brutal-check {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  border: 3px solid #033F63;
+  background: #FFFDF9;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.brutal-check:checked {
+  background: #697A21;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='%23FFFDF9' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 16px 16px;
+}
+
+/* Zigzag — colorful */
+.zigzag {
+  background:
+    linear-gradient(135deg, #FF5D73 25%, transparent 25%) -14px 0,
+    linear-gradient(225deg, #033F63 25%, transparent 25%) -14px 0,
+    linear-gradient(315deg, #697A21 25%, transparent 25%),
+    linear-gradient(45deg, #FFC914 25%, transparent 25%);
+  background-size: 28px 8px;
+  background-position: top;
+  background-repeat: repeat-x;
+  height: 8px;
+  width: 100%;
 }

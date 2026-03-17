@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum FoodPreference {
+  MEAT
+  VEGETARIAN
+  VEGAN
+}
+
+enum RsvpStatus {
+  ATTENDING
+  DECLINED
+}
+
+model Guest {
+  id              String          @id @default(cuid())
+  name            String
+  email           String?
+  token           String          @unique @default(uuid())
+  sleepover       Boolean         @default(false)
+  sleepoverFrom   DateTime?       @map("sleepover_from")
+  sleepoverTo     DateTime?       @map("sleepover_to")
+  foodPreference  FoodPreference? @map("food_preference")
+  allergies       String?
+  plusOneCount    Int             @default(0) @map("plus_one_count")
+  plusOneNames    String[]        @map("plus_one_names")
+  profileComplete Boolean         @default(false) @map("profile_complete")
+  createdAt       DateTime        @default(now()) @map("created_at")
+
+  rsvps RSVP[]
+
+  @@map("guests")
+}
+
+model Activity {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  date        DateTime
+  time        String
+  location    String
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  rsvps RSVP[]
+
+  @@map("activities")
+}
+
+model RSVP {
+  id         String     @id @default(cuid())
+  guestId    String     @map("guest_id")
+  activityId String     @map("activity_id")
+  status     RsvpStatus
+  createdAt  DateTime   @default(now()) @map("created_at")
+
+  guest    Guest    @relation(fields: [guestId], references: [id], onDelete: Cascade)
+  activity Activity @relation(fields: [activityId], references: [id], onDelete: Cascade)
+
+  @@unique([guestId, activityId])
+  @@map("rsvps")
+}
